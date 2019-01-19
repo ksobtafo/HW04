@@ -121,27 +121,37 @@ public class proj1 extends JFrame{
    
 
     class Mixer extends proj1 implements Runnable  {
-         proj1 p = new proj1();
+    
+        proj1 p = new proj1();
         private JLabel _label;
+	
         public Mixer (JLabel label)
         {
             _label = label;
         }
 
     public void run() {
-    for (int i=0; i<6; i++ )
+    
+for (int i=0; i<6; i++ )
 {
-Random rand = new Random();
-int num = rand.nextInt(6)+1;
-
-   _label.setImage(ImArr.get(num));
+	Random rand = new Random();
+	int num = rand.nextInt(6)+1;
+   	 //try this instead
+  	 //_label.setImage(ImArr.get(num));
+  label_2.setIcon(new ImageIcon(ImArr.get(num)));
+  label_3.setIcon(new ImageIcon(ImArr.get(num)));
+  label_4.setIcon(new ImageIcon(ImArr.get(num)));
+   label_5.setIcon(new ImageIcon(ImArr.get(num)));
+   label_6.setIcon(new ImageIcon(ImArr.get(num)));
+   
     try {
         Thread.sleep(1000);
         }   
     catch (InterruptedException ex) {;}
 }
 
-    _label.setImage(img);
+   // _label.setImage(img);
+   label_6.setImage(new ImageIcon(img));
 
                     }
     }
