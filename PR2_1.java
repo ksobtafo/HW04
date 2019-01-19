@@ -152,6 +152,10 @@ for (int i=0; i<6; i++ )
 
    // _label.setImage(img);
    label_6.setImage(new ImageIcon(img));
+   label_5.setImage(new ImageIcon(img1)); 
+  label_4.setImage(new ImageIcon(img2));
+  label_3.setImage(new ImageIcon(img3));
+  label_2.setImage(new ImageIcon(img4));
 
                     }
     }
