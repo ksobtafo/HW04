@@ -1,21 +1,19 @@
-package javaproj1;
-
+import java.awt.*;
+import java.io.*;
 import java.awt.EventQueue;
 import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-
-public class proj1 {
+import java.util.Scanner;
+import java.util.Random;
+import java.net.URL;
+public class proj1 extends JFrame{
 
 	private JFrame frame;
-	/**
-	 * @wbp.nonvisual location=787,489
-	 */
 	private final JButton button = new JButton("New button");
 	private JLabel label;
 	private JLabel label_1;
@@ -25,9 +23,7 @@ public class proj1 {
 	private JLabel label_5;
 	private JLabel label_6;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,17 +36,9 @@ public class proj1 {
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
 	public proj1() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 910, 377);
@@ -59,7 +47,9 @@ public class proj1 {
 		
 		JButton btnNewButton = new JButton("Okay !");
 		btnNewButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
+                // put class here after 
 			}
 		});
 		btnNewButton.setBounds(795, 144, 89, 23);
@@ -68,31 +58,87 @@ public class proj1 {
 		label_2 = new JLabel("");
 		label_2.setBounds(10, 69, 149, 204);
 		frame.getContentPane().add(label_2);
-		Image img = new ImageIcon(this.getClass().getResource("/side1.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("side1.png")).getImage();
 		label_2.setIcon(new ImageIcon(img));
-		
+
+///////////////////////////////////////////
+        Mixer[] mx1 = new Mixer[5];
+        for (int i =0; i<mx1.length; i++)
+        {
+            JLabel l1 = new JLabel();
+            mx1[i] = new Mixer(l1);
+            this.add(l1); 
+        }
+////////////////////////////////////////////
+         this.setVisible(true); 
+
+         for (int i =0; i< mx1.length;i++)
+         {
+             Thread t = new Thread(mx1[i]);
+             t.start();
+             try {
+                 Thread.sleep(100);
+             }
+             catch (InterruptedException ex) {;}
+         }
+////////////////////////////////////////////
+
 		label_3 = new JLabel("");
 		label_3.setBounds(169, 69, 149, 204);
 		frame.getContentPane().add(label_3);
-		Image img1 = new ImageIcon(this.getClass().getResource("/side2.png")).getImage();
+		Image img1 = new ImageIcon(this.getClass().getResource("side2.png")).getImage();
 		label_3.setIcon(new ImageIcon(img1));
 		
 		label_4 = new JLabel("");
 		label_4.setBounds(328, 69, 133, 204);
 		frame.getContentPane().add(label_4);
-		Image img2 = new ImageIcon(this.getClass().getResource("/side3.png")).getImage();
+		Image img2 = new ImageIcon(this.getClass().getResource("side3.png")).getImage();
 		label_4.setIcon(new ImageIcon(img2));
 		
 		label_5 = new JLabel("");
 		label_5.setBounds(471, 69, 140, 204);
 		frame.getContentPane().add(label_5);
-		Image img3 = new ImageIcon(this.getClass().getResource("/side4.png")).getImage();
+		Image img3 = new ImageIcon(this.getClass().getResource("side4.png")).getImage();
 		label_5.setIcon(new ImageIcon(img3));
 		
 		label_6 = new JLabel("");
 		label_6.setBounds(621, 69, 149, 204);
 		frame.getContentPane().add(label_6);
-		Image img4 = new ImageIcon(this.getClass().getResource("/side5.png")).getImage();
+		Image img4 = new ImageIcon(this.getClass().getResource("side5.png")).getImage();
 		label_6.setIcon(new ImageIcon(img4));
 	}
+    
+    proj1 p = new proj1();
+
+    class Mixer implements Runnable {
+        private JLabel _label;
+        public Mixer (JLabel label)
+        {
+            _label = label;
+        }
+
+    public void run() {
+for (int i=0; i<6; i++  )
+{
+    
+Random rand = new Random();
+int min = 1;
+int max = 6;
+int randomNum = rand.nextInt((min - max) + 1) + min;
+JLabel MyImage = new JLabel (new ImageIcon("side"+randomNum+".png"));
+
+   _label.setImage(ImageIcon(MyImage));
+    try {
+        Thread.sleep(1000);
+    }
+    catch (InterruptedException ex) {;}
 }
+_label.setImage(img4);
+    }
+    }
+}
+
+
+
+
+//output random images 
