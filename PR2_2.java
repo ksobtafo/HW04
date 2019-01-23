@@ -1,4 +1,5 @@
 	
+	
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +11,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class webcrawler{
+
+public class webcrawler {
 	
 	public static Queue<String> queue = new LinkedList<>();
 	public static Set<String> marked = new HashSet<>();
@@ -21,7 +23,7 @@ public class webcrawler{
 		BufferedReader br = null;
 		while (!queue.isEmpty()) {
 			String crawledUrl = queue.poll();
-			System.out.println("\n=== Site crawled: " +crawledUrl +" ===");
+			System.out.println("\n --- Site crawled: " +crawledUrl +" ---");
 			
 			//limiting the spider to getting 100 websites
 			if(marked.size()>100)
@@ -36,34 +38,37 @@ public class webcrawler{
 					url = new URL (crawledUrl);
 					br = new BufferedReader (new InputStreamReader (url.openStream()));
 					ok = true;
-				}catch (MalformedURLException e) {
+					}
+				
+				catch (MalformedURLException e) 
+				{
 					System.out.println("*** Malformed URL: " + crawledUrl);
 					crawledUrl = queue.poll();
 					ok = false;
-					
-				} catch  (IOException ioe) {
+				} 
+				catch  (IOException ioe) 
+				{
 					System.out.println("*** IOException for URL: "+ crawledUrl);
 					crawledUrl = queue.poll();
 					ok= false;
-					
-					
 				}
-			}
+				
+					  }	
 			
 			StringBuilder sb = new StringBuilder();
-			//String tmp = null;
 			
-			while ( (crawledUrl= br.readLine()) != null) {
-				sb.append(crawledUrl);
-			}
+			
+			while ( (crawledUrl= br.readLine()) != null) { sb.append(crawledUrl); }
 			crawledUrl = sb.toString();
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(crawledUrl);
 			
-			while (matcher.find() ) {
+			while (matcher.find() ) 
+			{
 				String w = matcher.group();
 				
-				if (!marked.contains(w)) {
+				if (!marked.contains(w))
+				{
 					marked.add(w);
 					System.out.println("Sited added for Crawling: " + w);
 					queue.add(w);
@@ -86,12 +91,11 @@ public class webcrawler{
 		bfsAlg("https://www.bbc.com/news/world-africa-44574969?intlink_from_url=https://www.bbc.com/news/topics/cdl8n2edxgpt/technologyin-africa&link_location=live-reporting-story");
 		showResults();
 		
-	} catch (IOException e) {
+	} catch (IOException e) {}
+		}
+	
+	
 	}
-		
-	}
-	}
-
 
 	
 	
