@@ -1,5 +1,6 @@
 	
 	
+	
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +18,8 @@ public class webcrawler {
 	public static Queue<String> queue = new LinkedList<>();
 	public static Set<String> marked = new HashSet<>();
 	public static String regex = "http[s]*://(\\w+\\.)*(\\w+)";
-			
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////					
 	public static void bfsAlg(String root) throws IOException {
 		queue.add(root);
 		BufferedReader br = null;
@@ -32,7 +34,8 @@ public class webcrawler {
 			boolean ok = false;
 			URL url = null;
 			
-			
+			/////////////////////////////////////////////////////////////////////////////////////////////////////		
+
 			while(!ok) {
 				try { 
 					url = new URL (crawledUrl);
@@ -54,9 +57,10 @@ public class webcrawler {
 				}
 				
 					  }	
+			/////////////////////////////////////////////////////////////////////////////////////////////////		
+
 			
 			StringBuilder sb = new StringBuilder();
-			
 			
 			while ( (crawledUrl= br.readLine()) != null) { sb.append(crawledUrl); }
 			crawledUrl = sb.toString();
@@ -76,7 +80,7 @@ public class webcrawler {
 			}
 		}
 	}
-			
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	public static void showResults() {
 		System.out.println("\n\nResults :");
 		System.out.println("Web sites crawled: "+ marked.size() + "\n ");
@@ -90,18 +94,8 @@ public class webcrawler {
 		try {
 		bfsAlg("https://www.bbc.com/news/world-africa-44574969?intlink_from_url=https://www.bbc.com/news/topics/cdl8n2edxgpt/technologyin-africa&link_location=live-reporting-story");
 		showResults();
-		
-	} catch (IOException e) {}
+			} catch (IOException e) {}
 		}
 	
 	
 	}
-
-	
-	
-	
-	
-	
-	
-	
-
