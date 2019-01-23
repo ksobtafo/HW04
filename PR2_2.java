@@ -17,6 +17,7 @@ public class webcrawler {
 	
 	public static Queue<String> queue = new LinkedList<>();
 	public static Set<String> marked = new HashSet<>();
+	public static Set<String> emailset = new HashSet<>();
 	public static String regex = "http[s]*://(\\w+\\.)*(\\w+)";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////					
